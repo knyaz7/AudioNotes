@@ -3,7 +3,7 @@ import websockets
 import json
 
 async def send_audio_note():
-    uri = "ws://localhost:8000/ws"  # Замените на адрес вашего сервера
+    uri = "ws://localhost:8000/ws"  
     async with websockets.connect(uri) as websocket:
         # Откройте файл и прочитайте его содержимое
         with open("your_file.wav", "rb") as audio_file:
