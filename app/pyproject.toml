@@ -1,0 +1,37 @@
+[project]
+name = "app"
+version = "0.1.0"
+description = "Add your description here"
+authors = [
+    { name = "knyaz7", email = "vn.guitar@mail.ru" }
+]
+dependencies = [
+    "fastapi>=0.115.0",
+    "uvicorn>=0.30.6",
+    "sqlalchemy>=2.0.35",
+    "asyncpg>=0.29.0",
+    "g4f>=0.3.2.7",
+    "curl-cffi>=0.7.1",
+    "speechrecognition>=3.10.4",
+    "wave>=0.0.2",
+    "pydantic>=2.9.2",
+    "websockets>=13.0.1",
+    "nest-asyncio>=1.6.0",
+]
+readme = "README.md"
+requires-python = ">= 3.8"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.rye]
+managed = true
+dev-dependencies = []
+virtual = true
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/app"]
