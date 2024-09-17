@@ -5,17 +5,13 @@ import json
 async def send_audio_note():
     uri = "ws://localhost:8000/ws"  
     async with websockets.connect(uri) as websocket:
-        # Откройте файл и прочитайте его содержимое
         with open("your_file.wav", "rb") as audio_file:
             audio_content = audio_file.read()
         
-        # Отправьте запрос на создание заметки
         await websocket.send(json.dumps({"action": "create_note"}))
         
-        # Отправьте содержимое файла
         await websocket.send(audio_content)
         
-        # Опционально: получите ответ от сервера
         response = await websocket.recv()
         print("Server response:", response)
 
@@ -36,7 +32,7 @@ async def get_notes():
 async def get_note(note_id):
     uri = "ws://localhost:8000/ws"
     async with websockets.connect(uri, max_size=10**10) as websocket:  # Увеличьте max_size по необходимости
-        request = json.dumps({"action": "get_note", "note_id": note_id}) # Указываем id нужной аудиозаметки
+        request = json.dumps({"action": "get_note", "note_id": note_id}) 
         await websocket.send(request)
 
         async for message in websocket:
@@ -60,7 +56,6 @@ async def update_note(note_id):
         }
         await websocket.send(json.dumps(request))
         
-        # Опционально: получите ответ от сервера
         response = await websocket.recv()
         print("Server response:", response)
 
